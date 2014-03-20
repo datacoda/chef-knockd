@@ -10,6 +10,15 @@ platforms:
     driver_config:
       network:
       - [private_network, ip: 33.33.33.10]
+  - name: ubuntu-13.04
+    driver_config:
+      network:
+      - [private_network, ip: 33.33.33.11]
+  - name: debian-7.4
+    driver_config:
+      network:
+      - [private_network, ip: 33.33.33.12]
+
 
 suites:
   - name: knockd
