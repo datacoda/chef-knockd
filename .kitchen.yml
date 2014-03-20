@@ -7,10 +7,14 @@ provisioner:
 
 platforms:
   - name: ubuntu-12.04
-  - name: centos-6.4
+    driver_config:
+      network:
+      - [private_network, ip: 33.33.33.10]
 
 suites:
-  - name: default
+  - name: knockd
     run_list:
-      - recipe[knockd::default]
+      - recipe[fake::default]
     attributes:
+      knockd:
+        interface: eth1

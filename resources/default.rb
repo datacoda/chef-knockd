@@ -1,9 +1,9 @@
 #
 # Cookbook Name:: knockd
-# Recipe:: default
+# Resource:: sequence
 #
 # Copyright (C) 2014 Nephila Graphic
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -17,7 +17,15 @@
 # limitations under the License.
 #
 
+actions :enable, :disable
 
-# Install pork knocking
-# -------------------------
-package 'knockd'
+attribute :name,                :kind_of => String, :name_attribute => true
+
+attribute :interface,           :kind_of => String, :default => node['knockd']['interface']
+
+
+
+def initialize(name, run_context=nil)
+  super
+  @action = :enable
+end

@@ -1,0 +1,8 @@
+[options]
+UseSyslog
+
+<% @blocks.each do |name, block| -%>
+[<%=name %>]
+<%= block %>
+
+<% end -%>
