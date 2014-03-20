@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe 'monit'
+
 monitrc 'knockd' do
   template_source 'monit.knockd.erb'
   template_cookbook 'knockd'
