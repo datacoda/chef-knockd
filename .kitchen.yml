@@ -14,7 +14,11 @@ platforms:
 suites:
   - name: knockd
     run_list:
+      - recipe[monit::default]
       - recipe[fake::default]
     attributes:
+      monit:
+        poll_period: 30
+        poll_start_delay: 0
       knockd:
         interface: eth1

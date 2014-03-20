@@ -1,6 +1,7 @@
 # Open the SSH port so we retain access
 
 include_recipe 'knockd'
+include_recipe 'knockd::monit'
 
 knockd 'knockknock' do
   action    :nothing
