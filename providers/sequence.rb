@@ -25,7 +25,7 @@ action :enable do
   block = ''
   block << "sequence = #{new_resource.sequence.flatten.join(',') }\n"
   block << "seq_timeout = #{new_resource.seq_timeout}\n"
-  block << "tcpflags = #{new_resource.tcpflags.flatten.join(',') }\n"
+  block << "tcpflags = #{Array(new_resource.tcpflags).flatten.join(',') }\n"
 
   if new_resource.auto_close >= 0
     block << "start_command = #{new_resource.on_open}\n"
