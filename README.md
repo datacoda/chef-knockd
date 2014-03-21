@@ -97,6 +97,17 @@ Each sequence gets its own resource.
 - on_open: command to run when port is opened.
 - on_close: command to run when port is closed.  Only works with valid auto_close.
 
+### `knockd_client`
+Performs a simple knock.  Does this at the start of the resource section.
+
+#### Actions
+- :enable: performs knock sequence.
+- :nothing: does nothing.
+
+#### Attribute Parameters
+- ip: Destination IP address.
+- sequence: list of ports following the <port1>[:<tcp|udp>] syntax.
+
 
 License & Authors
 -----------------

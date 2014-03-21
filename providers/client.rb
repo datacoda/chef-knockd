@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: knockd
-# Recipe:: default
+# Provider:: client
 #
 # Copyright (C) 2014 Nephila Graphic
 #
@@ -17,6 +17,12 @@
 # limitations under the License.
 #
 
-default['knockd']['interface'] = nil
-
-default['knockd']['client_bin'] = '/usr/bin/knock'
+action :run do
+  knockports = new_resource.sequence.flatten.join ' '
+  knockcmd = "#{node['knockd']['client_bin']} #{new_resource.ip} #{knockports}"
+  t = execute "knockd-client" do
+    command knockcmd
+  end
+  t.run_action(:run)
+  new_resource.updated_by_last_action(true)
+end

@@ -47,20 +47,18 @@ action :enable do
     supports [:start, :restart, :stop]
   end
 
-  t = template '/etc/knockd.conf' do
+  t1 = template '/etc/knockd.conf' do
     source      'knockd.conf.erb'
     cookbook    'knockd'
     mode        00640
     variables(
         :blocks => KnockdConfig.instance.blocks
     )
-    notifies  :restart, 'service[knockd]'
   end
 
-  t.run_action(:create)
+  t1.run_action(:create)
 
-
-  t = template '/etc/default/knockd' do
+  t2 = template '/etc/default/knockd' do
     source      'default.knockd.erb'
     cookbook    'knockd'
     mode        00644
@@ -71,8 +69,14 @@ action :enable do
     notifies  :restart, 'service[knockd]'
   end
 
-  t.run_action(:create)
+  t2.run_action(:create)
 
+  # note: required here since notify does not work inside run_action
+  changed = t1.updated_by_last_action? || t2.updated_by_last_action?
 
-  new_resource.updated_by_last_action(r.updated_by_last_action?)
+  if changed
+    r.run_action(:restart)
+  end
+
+  new_resource.updated_by_last_action(changed)
 end
