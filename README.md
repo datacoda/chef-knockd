@@ -1,5 +1,7 @@
 knockd cookbook
 ---------------
+[![Build Status](https://travis-ci.org/nephilagraphic-cookbooks/knockd.svg?branch=master)](https://travis-ci.org/nephilagraphic-cookbooks/knockd)
+
 Provides LWRP for knockd
 
 
