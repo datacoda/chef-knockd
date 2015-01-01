@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+default['knockd']['enabled'] = true
 default['knockd']['interface'] = nil
 
 default['knockd']['client_bin'] = '/usr/bin/knock'

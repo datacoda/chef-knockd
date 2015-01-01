@@ -2,7 +2,7 @@ knockd cookbook
 ---------------
 [![Build Status](https://travis-ci.org/nephilagraphic-cookbooks/knockd.svg?branch=master)](https://travis-ci.org/nephilagraphic-cookbooks/knockd)
 
-Provides LWRP for knockd
+Installs and configures knockd.
 
 
 Requirements
@@ -24,31 +24,21 @@ Tested on
 Usage
 -----
 
-Include the `knockd::default` recipe to start using the LWRPs.
+Include the `knockd::default` recipe to start using knockd.
 
 ```ruby
 include_recipe 'knockd'
 
-knockd 'knockknock' do
-  action    :nothing
-  supports [:enable, :disable]
-end
-
 knockd_sequence 'openHTTP' do
-  port '7000'
-  port '8000'
-  port '9000'
+  sequence ['7000', '8000', '9000:tcp']
   tcpflags :syn
   on_open '/sbin/iptables -A INPUT -s %IP% -p tcp --dport 80 -j ACCEPT'
-
-  notifies  :enable, 'knockd[knockknock]'
 end
 
 knockd_sequence 'https' do
   sequence [ '2123', '2124:tcp', '2125:udp' ]
   tcpflags [ :syn, :ack ]
   on_open 'echo https open'
-  notifies  :enable, 'knockd[knockknock]'
 end
 ```
 
@@ -56,6 +46,7 @@ end
 Attributes
 ----------
 
+- `['knockd']['enabled']` - Enables or disables knockd.  default true.
 - `['knockd']['interface']` - Make knockd listen to a specific interface.  default nil.
 
 
@@ -66,22 +57,11 @@ Recipes
 Provides LWRP for knockd.  Note that by default, knockd service is disabled.
 
 
-Resources/Providers
--------------------
-
-### `knockd`
-This LWRP creates the primary service configuration.
-
-#### Actions
-- :enable: turns on knockd
-- :disable: turns off knockd
-
-#### Attribute Parameters
-- interface: Listen to specific interface.  Defaults to node['knockd']['interface'] value.
-
+Definitions/Resources/Providers
+-------------------------------
 
 ### `knockd_sequence`
-Each sequence gets its own resource.
+Definition that constructs a sequence to be specified in the knockd configuration. 
 
 #### Actions
 - :enable: adds sequence to configuration

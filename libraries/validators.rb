@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: knockd
-# Resource:: sequence
+# Resource:: validators
 #
 # Copyright (C) 2014 Nephila Graphic
 #
@@ -17,13 +17,19 @@
 # limitations under the License.
 #
 
-actions :enable, :disable
+class KnockdValidator
+  VALID_PORT_REGEX = /^[0-9]+(:(udp|tcp))?$/
+  VALID_TCPFLAGS = [:fin, :syn, :rst, :psh, :ack, :urg]
 
-attribute :name, kind_of: String, name_attribute: true
+  def self.validate_ports(ports)
+    ports.reject do |port|
+      ! (VALID_PORT_REGEX =~ port).nil?
+    end.empty?
+  end
 
-attribute :interface, kind_of: String, default: node['knockd']['interface']
-
-def initialize(name, run_context = nil)
-  super
-  @action = :enable
+  def self.validate_tcpflags(flags)
+    Array(flags).reject do |key|
+      VALID_TCPFLAGS.include?(key.to_sym)
+    end.empty?
+  end
 end

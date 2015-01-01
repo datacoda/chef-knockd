@@ -24,7 +24,7 @@ attribute :ip, kind_of: String, required: true
 
 attribute :sequence, kind_of: Array, required: true, callbacks: {
   'should contain port definitions matchin <port1>[:<tcp|udp>]' => lambda do
-    |ports| Chef::Resource::KnockdSequence.validate_ports(ports)
+    |ports| KnockdValidator.validate_ports(ports)
   end
 }
 

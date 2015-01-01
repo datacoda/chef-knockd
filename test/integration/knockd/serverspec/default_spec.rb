@@ -10,7 +10,6 @@ end
 describe service('knockd') do
   it { should be_enabled }
   it { should be_running }
-  it { should be_monitored_by('monit') }
 end
 
 # Check config readable, writable settings
@@ -36,6 +35,6 @@ describe file('/etc/knockd.conf') do
   it { should_not be_readable.by('others') }
   it { should contain '[ssh]' }
   it { should contain '[http]' }
-  it { should contain 'sequence = 123,124,125' }
-  it { should contain 'sequence = 1123,1124,1125' }
+  it { should contain 'sequence = 123:tcp,124:tcp,125:tcp' }
+  it { should contain 'sequence = 1123:tcp,1124,1125' }
 end

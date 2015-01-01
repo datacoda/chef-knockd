@@ -15,37 +15,23 @@ end
 
 include_recipe 'knockd'
 
-knockd 'knockknock' do
-  action :nothing
-  supports [:enable, :disable]
-end
-
 knockd_sequence 'ssh' do
-  port '123'
-  port '124'
-  port '125'
+  sequence ['123:tcp', '124:tcp', '125:tcp']
   on_open 'ufw allow from %IP% to any port 22'
   tcpflags [:syn, :ack]
-
-  notifies :enable, 'knockd[knockknock]'
 end
 
 knockd_sequence 'http' do
-  port '1123'
-  port '1124'
-  port '1125'
+  sequence ['1123:tcp', '1124', '1125']
   on_open 'ufw allow from %IP% to any port 80'
   on_close 'ufw delete allow from %IP% to any port 80'
   auto_close 10
   tcpflags :syn
-
-  notifies :enable, 'knockd[knockknock]'
 end
 
 knockd_sequence 'https' do
   sequence ['2123', '2124:tcp', '2125:udp']
   on_open 'ufw allow from %IP% to any port 443'
-  notifies :enable, 'knockd[knockknock]'
 end
 
 # note, this won't do anything since its a loopback

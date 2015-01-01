@@ -20,3 +20,20 @@
 # Install pork knocking
 # -------------------------
 package 'knockd'
+
+service 'knockd' do
+  if node['knockd']['enabled']
+    action :start
+  else
+    action :stop
+  end
+end
+
+template '/etc/default/knockd' do
+  source 'default.knockd.erb'
+  mode 00640
+  variables(
+    enabled: node['knockd']['enabled'],
+    interface: node['knockd']['interface']
+  )
+end

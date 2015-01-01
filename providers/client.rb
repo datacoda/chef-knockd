@@ -20,9 +20,7 @@
 action :run do
   knockports = new_resource.sequence.flatten.join ' '
   knockcmd = "#{node['knockd']['client_bin']} #{new_resource.ip} #{knockports}"
-  t = execute 'knockd-client' do
-    command knockcmd
-  end
-  t.run_action(:run)
-  new_resource.updated_by_last_action(true)
+  cres = execute knockcmd
+  cres.run_action(:run)
+  new_resource.updated_by_last_action(cres.updated_by_last_action?)
 end
