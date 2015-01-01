@@ -1,6 +1,6 @@
 knockd cookbook
 ---------------
-[![Build Status](https://travis-ci.org/nephilagraphic-cookbooks/knockd.svg?branch=master)](https://travis-ci.org/nephilagraphic-cookbooks/knockd)
+[![Build Status](https://travis-ci.org/nephilagraphic-cookbooks/knockd.svg?branch=0.2.0)](https://travis-ci.org/nephilagraphic-cookbooks/knockd)
 
 Installs and configures knockd.
 
