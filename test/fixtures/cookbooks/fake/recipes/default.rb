@@ -2,8 +2,8 @@ include_recipe 'firewall'
 
 # open standard ssh port, enable firewall
 firewall_rule 'ssh' do
-  port     22
-  action   :allow
+  port 22
+  action :allow
   notifies :enable, 'firewall[ufw]'
 end
 
@@ -14,10 +14,9 @@ end
 # knock specific testing setup
 
 include_recipe 'knockd'
-include_recipe 'knockd::monit'
 
 knockd 'knockknock' do
-  action    :nothing
+  action :nothing
   supports [:enable, :disable]
 end
 
@@ -28,9 +27,8 @@ knockd_sequence 'ssh' do
   on_open 'ufw allow from %IP% to any port 22'
   tcpflags [:syn, :ack]
 
-  notifies  :enable, 'knockd[knockknock]'
+  notifies :enable, 'knockd[knockknock]'
 end
-
 
 knockd_sequence 'http' do
   port '1123'
@@ -41,18 +39,19 @@ knockd_sequence 'http' do
   auto_close 10
   tcpflags :syn
 
-  notifies  :enable, 'knockd[knockknock]'
+  notifies :enable, 'knockd[knockknock]'
 end
 
 knockd_sequence 'https' do
-  sequence [ '2123', '2124:tcp', '2125:udp' ]
+  sequence ['2123', '2124:tcp', '2125:udp']
   on_open 'ufw allow from %IP% to any port 443'
-  notifies  :enable, 'knockd[knockknock]'
+  notifies :enable, 'knockd[knockknock]'
 end
-
 
 # note, this won't do anything since its a loopback
 knockd_client 'http' do
   ip node['dev_knock_ip']
-  sequence [ '1123', '1124', '1125' ]
+
+  # note: array literal style switch because of rubocop
+  sequence %w(1123  1124  1125)
 end

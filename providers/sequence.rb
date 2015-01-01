@@ -19,8 +19,6 @@
 
 require 'erb'
 
-
-
 action :enable do
   block = ''
   block << "sequence = #{new_resource.sequence.flatten.join(',') }\n"
@@ -36,7 +34,7 @@ action :enable do
   end
 
   # write into singleton
-  KnockdConfig.instance.addBlock(new_resource.name, block)
+  KnockdConfig.instance.add_block(new_resource.name, block)
   new_resource.updated_by_last_action(true)
 end
 

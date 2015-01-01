@@ -19,13 +19,11 @@
 
 actions :enable, :disable
 
-attribute :name,                :kind_of => String, :name_attribute => true
+attribute :name, kind_of: String, name_attribute: true
 
-attribute :interface,           :kind_of => String, :default => node['knockd']['interface']
+attribute :interface, kind_of: String, default: node['knockd']['interface']
 
-
-
-def initialize(name, run_context=nil)
+def initialize(name, run_context = nil)
   super
   @action = :enable
 end

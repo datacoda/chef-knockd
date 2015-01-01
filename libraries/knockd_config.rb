@@ -21,15 +21,13 @@ class KnockdConfig
   # mixin the singleton module
   include Singleton
 
-  def initialize(*args)
-    @blocks = Hash.new
+  attr_reader :blocks
+
+  def initialize(*)
+    @blocks = {}
   end
 
-  def addBlock(name, block)
+  def add_block(name, block)
     @blocks[name] = block
-  end
-
-  def blocks()
-    @blocks
   end
 end

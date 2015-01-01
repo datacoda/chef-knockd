@@ -13,7 +13,7 @@ platforms:
     attributes:
       dev_knock_ip: 33.33.33.10
 
-  - name: ubuntu-13.04
+  - name: ubuntu-14.04
     driver_config:
       network:
       - [private_network, ip: 33.33.33.11]
@@ -31,7 +31,6 @@ platforms:
 suites:
   - name: knockd
     run_list:
-      - recipe[monit::default]
       - recipe[fake::default]
     attributes:
       monit:

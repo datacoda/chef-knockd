@@ -6,7 +6,7 @@ Provides LWRP for knockd
 Requirements
 ------------
 
-The `knockd::monit` recipe requires the `monit` cookbook to be previously run.
+None
 
 
 Platform
@@ -62,9 +62,6 @@ Recipes
 
 ### default
 Provides LWRP for knockd.  Note that by default, knockd service is disabled.
-
-### monit
-Optionally installs monitrc for monitoring knockd service.
 
 
 Resources/Providers

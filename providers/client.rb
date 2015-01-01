@@ -20,7 +20,7 @@
 action :run do
   knockports = new_resource.sequence.flatten.join ' '
   knockcmd = "#{node['knockd']['client_bin']} #{new_resource.ip} #{knockports}"
-  t = execute "knockd-client" do
+  t = execute 'knockd-client' do
     command knockcmd
   end
   t.run_action(:run)

@@ -19,23 +19,22 @@
 
 actions :run
 
-attribute :name,                :kind_of => String, :name_attribute => true
-attribute :ip,                  :kind_of => String, :required => true
+attribute :name, kind_of: String, name_attribute: true
+attribute :ip, kind_of: String, required: true
 
-attribute :sequence,                :kind_of => Array, :required => true, :callbacks => {
-    'should contain port definitions matchin <port1>[:<tcp|udp>]' => lambda {
-        |ports| Chef::Resource::KnockdSequence.validate_ports(ports)
-    }
+attribute :sequence, kind_of: Array, required: true, callbacks: {
+  'should contain port definitions matchin <port1>[:<tcp|udp>]' => lambda do
+    |ports| Chef::Resource::KnockdSequence.validate_ports(ports)
+  end
 }
 
-
-def initialize(name, run_context=nil)
+def initialize(name, run_context = nil)
   super
-  @sequence = Array.new
+  @sequence = []
   @action = :run
 end
 
 def port(rule)
-  validate({ :rule => rule }, { :rule => { :kind_of => String, :regex => VALID_PORT_REGEX }})
+  validate({ rule: rule }, rule: { kind_of: String, regex: VALID_PORT_REGEX })
   @sequence << rule
 end

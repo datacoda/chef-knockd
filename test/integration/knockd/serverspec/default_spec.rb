@@ -1,10 +1,7 @@
-require 'serverspec'
 require 'spec_helper'
 
-include Serverspec::Helper::Exec
-
 # Ensure the packages are installed
-%w{knockd}.each do |p|
+%w(knockd).each do |p|
   describe package(p) do
     it { should be_installed }
   end
@@ -16,9 +13,9 @@ describe service('knockd') do
   it { should be_monitored_by('monit') }
 end
 
-
 # Check config readable, writable settings
-%w{/etc/knockd.conf /etc/default/knockd}.each do |f|
+
+%w(/etc/knockd.conf /etc/default/knockd).each do |f|
   describe file(f) do
     it { should be_file }
     it { should be_owned_by 'root' }
@@ -29,12 +26,12 @@ end
 end
 
 describe file('/etc/default/knockd') do
-  its(:content) { should match /START_KNOCKD\s*=\s*1/ }
-  its(:content) { should match /KNOCKD_OPTS\s*=\s*"-i eth1"/ }
+  its(:content) { should match(/START_KNOCKD\s*=\s*1/) }
+  its(:content) { should match(/KNOCKD_OPTS\s*=\s*"-i eth1"/) }
 end
 
-
 # Check that the sequences were created
+
 describe file('/etc/knockd.conf') do
   it { should_not be_readable.by('others') }
   it { should contain '[ssh]' }
