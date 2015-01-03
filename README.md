@@ -1,6 +1,6 @@
 knockd cookbook
 ---------------
-[![Build Status](https://travis-ci.org/nephilagraphic-cookbooks/knockd.svg?branch=master)](https://travis-ci.org/nephilagraphic-cookbooks/knockd)
+[![Build Status](https://travis-ci.org/dataferret/chef-knockd.svg?branch=master)](https://travis-ci.org/dataferret/chef-knockd)
 
 Installs and configures knockd.
 
