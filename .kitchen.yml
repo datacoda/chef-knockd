@@ -3,7 +3,7 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
 
 platforms:
   - name: ubuntu-12.04
@@ -31,7 +31,7 @@ platforms:
 suites:
   - name: knockd
     run_list:
-      - recipe[fake::default]
+      - recipe[knockd_integration::default]
     attributes:
       monit:
         poll_period: 30

@@ -18,18 +18,16 @@
 #
 
 class KnockdValidator
-  VALID_PORT_REGEX = /^[0-9]+(:(udp|tcp))?$/
-  VALID_TCPFLAGS = [:fin, :syn, :rst, :psh, :ack, :urg]
-
   def self.validate_ports(ports)
     ports.reject do |port|
-      ! (VALID_PORT_REGEX =~ port).nil?
+      port =~ /^[0-9]+(:(udp|tcp))?$/
     end.empty?
   end
 
   def self.validate_tcpflags(flags)
+    tcpflags = [:fin, :syn, :rst, :psh, :ack, :urg]
     Array(flags).reject do |key|
-      VALID_TCPFLAGS.include?(key.to_sym)
+      tcpflags.include?(key.to_sym)
     end.empty?
   end
 end
