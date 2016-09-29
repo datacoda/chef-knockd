@@ -2,7 +2,7 @@
 # Cookbook Name:: knockd
 # Resource:: validators
 #
-# Copyright (C) 2014 Nephila Graphic
+# Copyright (C) 2016 Li-Te Chen
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

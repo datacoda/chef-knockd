@@ -1,6 +1,6 @@
 knockd cookbook
 ---------------
-[![Build Status](https://travis-ci.org/dataferret/chef-knockd.svg?branch=master)](https://travis-ci.org/dataferret/chef-knockd)
+[![Build Status](https://travis-ci.org/datacoda/chef-knockd.svg?branch=master)](https://travis-ci.org/datacoda/chef-knockd)
 
 Installs and configures knockd.
 
@@ -90,10 +90,10 @@ Performs a simple knock.  Does this at the start of the resource section.
 
 License & Authors
 -----------------
-- Author:: Ted Chen (<ted@nephilagraphic.com>)
+- Author:: Li-Te Chen (<datacoda@gmail.com>)
 
 ```text
-Copyright 2014, Nephila Graphic
+Copyright 2016 Li-Te Chen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
