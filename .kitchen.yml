@@ -20,7 +20,7 @@ platforms:
     attributes:
       dev_knock_ip: 33.33.33.11
 
-  - name: debian-7.4
+  - name: debian-7.8
     driver_config:
       network:
       - [private_network, ip: 33.33.33.12]

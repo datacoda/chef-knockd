@@ -3,8 +3,8 @@ include_recipe 'firewall'
 # open standard ssh port, enable firewall
 firewall_rule 'ssh' do
   port 22
-  action :allow
-  notifies :enable, 'firewall[ufw]'
+  action :create
+  notifies :restart, 'firewall[ufw]'
 end
 
 firewall 'ufw' do
