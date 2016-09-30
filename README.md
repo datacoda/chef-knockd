@@ -93,7 +93,7 @@ License & Authors
 - Author:: Li-Te Chen (<datacoda@gmail.com>)
 
 ```text
-Copyright 2016 Li-Te Chen
+Copyright 2014-2016 Nephila Graphic, Li-Te Chen
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
