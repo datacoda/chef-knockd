@@ -23,8 +23,8 @@ attribute :name, kind_of: String, name_attribute: true
 attribute :ip, kind_of: String, required: true
 
 attribute :sequence, kind_of: Array, required: true, callbacks: {
-  'should contain port definitions matchin <port1>[:<tcp|udp>]' => lambda do
-    |ports| KnockdValidator.validate_ports(ports)
+  'should contain port definitions matchin <port1>[:<tcp|udp>]' => lambda do |ports|
+    KnockdValidator.validate_ports(ports)
   end
 }
 

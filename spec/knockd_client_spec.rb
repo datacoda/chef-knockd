@@ -10,11 +10,7 @@ describe 'knockd_client_test::default' do
     end
 
     it 'should fail' do
-      # rubocop:disable Style/Blocks
-      expect {
-        chef_run
-      }.to raise_error(Chef::Exceptions::ValidationFailed)
-      # rubocop:enable Style/Blocks
+      expect(chef_run).to raise_error(Chef::Exceptions::ValidationFailed)
     end
   end
 
@@ -24,10 +20,10 @@ describe 'knockd_client_test::default' do
         platform: 'ubuntu',
         version: '12.04',
         step_into: 'knockd_client'
-        ) do |node|
-          node.set['knockd']['client_bin'] = 'knock'
-          node.set['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
-        end.converge(described_recipe)
+      ) do |node|
+        node.set['knockd']['client_bin'] = 'knock'
+        node.set['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
+      end.converge(described_recipe)
     end
 
     context 'compiling the test recipe' do

@@ -11,11 +11,7 @@ describe 'knockd_sequence_test::default' do
     end
 
     it 'should fail' do
-      # rubocop:disable Style/Blocks
-      expect {
-        chef_run
-      }.to raise_exception(Chef::Exceptions::ValidationFailed)
-      # rubocop:enable Style/Blocks
+      expect(chef_run).to raise_exception(Chef::Exceptions::ValidationFailed)
     end
   end
 
@@ -29,11 +25,7 @@ describe 'knockd_sequence_test::default' do
     end
 
     it 'should fail' do
-      # rubocop:disable Style/Blocks
-      expect {
-        chef_run
-      }.to raise_exception(Chef::Exceptions::ValidationFailed)
-      # rubocop:enable Style/Blocks
+      expect(chef_run).to raise_exception(Chef::Exceptions::ValidationFailed)
     end
   end
 

@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+use_inline_resources 
+
 action :run do
   knockports = new_resource.sequence.flatten.join ' '
   knockcmd = "#{node['knockd']['client_bin']} #{new_resource.ip} #{knockports}"
