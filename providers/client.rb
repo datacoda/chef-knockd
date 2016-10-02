@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-use_inline_resources 
+use_inline_resources
 
 action :run do
   knockports = new_resource.sequence.flatten.join ' '
