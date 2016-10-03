@@ -39,5 +39,5 @@ knockd_client 'http' do
   ip node['dev_knock_ip']
 
   # note: array literal style switch because of rubocop
-  sequence %w(1123  1124  1125)
+  sequence %w(1123 1124 1125)
 end

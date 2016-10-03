@@ -31,7 +31,7 @@ end
 
 template '/etc/default/knockd' do
   source 'default.knockd.erb'
-  mode 00640
+  mode '0640'
   variables(
     enabled: node['knockd']['enabled'],
     interface: node['knockd']['interface']

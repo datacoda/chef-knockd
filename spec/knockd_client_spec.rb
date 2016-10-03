@@ -3,14 +3,17 @@ require 'spec_helper'
 describe 'knockd_client_test::default' do
   describe 'with invalid test_sequence' do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new do |node|
-        node.set['knockd']['client_bin'] = 'knock'
-        node.set['knockd']['test_sequence'] = ['1123', '1124:udpfail', '1125:tcp']
+      ChefSpec::SoloRunner.new(
+        platform: 'ubuntu',
+        version: '12.04'
+      ) do |node|
+        node.override['knockd']['client_bin'] = 'knock'
+        node.override['knockd']['test_sequence'] = ['1123', '1124:udpfail', '1125:tcp']
       end.converge(described_recipe)
     end
 
     it 'should fail' do
-      expect(chef_run).to raise_error(Chef::Exceptions::ValidationFailed)
+      expect { chef_run }.to raise_error(Chef::Exceptions::ValidationFailed)
     end
   end
 
@@ -21,8 +24,8 @@ describe 'knockd_client_test::default' do
         version: '12.04',
         step_into: 'knockd_client'
       ) do |node|
-        node.set['knockd']['client_bin'] = 'knock'
-        node.set['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
+        node.override['knockd']['client_bin'] = 'knock'
+        node.override['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
       end.converge(described_recipe)
     end
 

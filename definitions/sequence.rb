@@ -50,7 +50,7 @@ define :knockd_sequence, sequence: [],
     template '/etc/knockd.conf' do
       source 'knockd.conf.erb'
       cookbook 'knockd'
-      mode 00640
+      mode '0640'
       variables(
         blocks: {}
       )
