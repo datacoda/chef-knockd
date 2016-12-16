@@ -24,12 +24,10 @@ define :knockd_sequence, sequence: [],
                          on_open: '',
                          on_close: '' do
   # Validate sequence
-  raise Chef::Exceptions::ValidationFailed,
-    'sequence should contain port definitions matchin <port1>[:<tcp|udp>]' unless KnockdValidator.validate_ports(params[:sequence])
+  raise Chef::Exceptions::ValidationFailed, 'sequence should contain port definitions matchin <port1>[:<tcp|udp>]' unless KnockdValidator.validate_ports(params[:sequence])
 
   # Validate sequence
-  raise Chef::Exceptions::ValidationFailed,
-    'tcpflags should contain a valid tcp flag type' unless KnockdValidator.validate_tcpflags(params[:tcpflags])
+  raise Chef::Exceptions::ValidationFailed, 'tcpflags should contain a valid tcp flag type' unless KnockdValidator.validate_tcpflags(params[:tcpflags])
 
   block = []
   block << "sequence = #{params[:sequence].flatten.join(',')}"

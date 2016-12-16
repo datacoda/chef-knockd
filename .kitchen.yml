@@ -1,26 +1,29 @@
 ---
-driver:
-  name: vagrant
-
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+  ssh:
+    insert_key: false
+    
 provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-12.04
+  - name: ubuntu-12.04-i386
     driver_config:
       network:
       - [private_network, ip: 33.33.33.10]
     attributes:
       dev_knock_ip: 33.33.33.10
 
-  - name: ubuntu-14.04
+  - name: ubuntu-14.04-i386
     driver_config:
       network:
       - [private_network, ip: 33.33.33.11]
     attributes:
       dev_knock_ip: 33.33.33.11
 
-  - name: debian-7.8
+  - name: debian-7.8-i386
     driver_config:
       network:
       - [private_network, ip: 33.33.33.12]
