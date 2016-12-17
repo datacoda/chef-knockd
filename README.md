@@ -1,6 +1,7 @@
 knockd cookbook
 ---------------
 [![Build Status](https://travis-ci.org/datacoda/chef-knockd.svg?branch=master)](https://travis-ci.org/datacoda/chef-knockd)
+[![Cookbook Version](https://img.shields.io/cookbook/v/knockd.svg)](https://supermarket.chef.io/cookbooks/knockd)
 
 Installs and configures knockd.
 
