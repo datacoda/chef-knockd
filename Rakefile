@@ -36,7 +36,7 @@ namespace :integration do
 end
 
 desc 'Run tests on Travis'
-task travis: %w[style spec]
+task travis: %w[style]
 
 # Default
 task default: %w[style spec integration:vagrant]
