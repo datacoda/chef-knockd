@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 group :lint do
-  gem 'foodcritic', '~> 6.0'
-  gem 'rubocop', '~> 0.48'
+  gem 'foodcritic', '~> 16.0'
+  gem 'rubocop'
 end
 
 group :unit do

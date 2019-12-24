@@ -18,6 +18,7 @@
 #
 
 actions :run
+default_action :run
 
 attribute :name, kind_of: String, name_attribute: true
 attribute :ip, kind_of: String, required: true
@@ -31,7 +32,6 @@ attribute :sequence, kind_of: Array, required: true, callbacks: {
 def initialize(name, run_context = nil)
   super
   @sequence = []
-  @action = :run
 end
 
 def port(rule)

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 # Ensure the packages are installed
-%w(knockd).each do |p|
+%w[knockd].each do |p|
   describe package(p) do
     it { should be_installed }
   end
@@ -14,7 +14,7 @@ end
 
 # Check config readable, writable settings
 
-%w(/etc/knockd.conf /etc/default/knockd).each do |f|
+%w[/etc/knockd.conf /etc/default/knockd].each do |f|
   describe file(f) do
     it { should be_file }
     it { should be_owned_by 'root' }

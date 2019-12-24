@@ -18,7 +18,7 @@ include_recipe 'knockd'
 knockd_sequence 'ssh' do
   sequence ['123:tcp', '124:tcp', '125:tcp']
   on_open 'ufw allow from %IP% to any port 22'
-  tcpflags [:syn, :ack]
+  tcpflags %i[syn ack]
 end
 
 knockd_sequence 'http' do
@@ -39,5 +39,5 @@ knockd_client 'http' do
   ip node['dev_knock_ip']
 
   # note: array literal style switch because of rubocop
-  sequence %w(1123 1124 1125)
+  sequence %w[1123 1124 1125]
 end

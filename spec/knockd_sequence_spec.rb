@@ -9,7 +9,7 @@ describe 'knockd_sequence_test::default' do
       ) do |node|
         node.override['knockd']['client_bin'] = 'knock'
         node.override['knockd']['test_sequence'] = ['1123', '1124:udpfail', '1125:tcp']
-        node.override['knockd']['test_flags'] = [:syn, :ack]
+        node.override['knockd']['test_flags'] = %i[syn ack]
       end.converge(described_recipe)
     end
 
@@ -26,7 +26,7 @@ describe 'knockd_sequence_test::default' do
       ) do |node|
         node.override['knockd']['client_bin'] = 'knock'
         node.override['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
-        node.override['knockd']['test_flags'] = [:syn, :ack, :foo]
+        node.override['knockd']['test_flags'] = %i[syn ack foo]
       end.converge(described_recipe)
     end
 
@@ -43,7 +43,7 @@ describe 'knockd_sequence_test::default' do
       ) do |node|
         node.override['knockd']['client_bin'] = 'knock'
         node.override['knockd']['test_sequence'] = ['1123', '1124:udp', '1125:tcp']
-        node.override['knockd']['test_flags'] = [:syn, :ack]
+        node.override['knockd']['test_flags'] = %i[syn ack]
       end.converge(described_recipe)
     end
 
