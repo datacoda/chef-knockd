@@ -18,7 +18,7 @@
 #
 
 define :knockd_sequence, sequence: [],
-                         tcpflags: [:syn, :ack],
+                         tcpflags: %i[syn ack],
                          seq_timeout: 30,
                          auto_close: -1,
                          on_open: '',
@@ -43,18 +43,18 @@ define :knockd_sequence, sequence: [],
   end
 
   t = begin
-    resources(template: '/etc/knockd.conf')
-  rescue Chef::Exceptions::ResourceNotFound
-    template '/etc/knockd.conf' do
-      source 'knockd.conf.erb'
-      cookbook 'knockd'
-      mode '0640'
-      variables(
-        blocks: {}
-      )
-      notifies :restart, 'service[knockd]'
-    end
-  end
+        resources(template: '/etc/knockd.conf')
+      rescue Chef::Exceptions::ResourceNotFound
+        template '/etc/knockd.conf' do
+          source 'knockd.conf.erb'
+          cookbook 'knockd'
+          mode '0640'
+          variables(
+            blocks: {}
+          )
+          notifies :restart, 'service[knockd]'
+        end
+      end
 
   t.variables[:blocks][params[:name]] = block
 end

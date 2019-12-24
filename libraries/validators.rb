@@ -25,7 +25,7 @@ class KnockdValidator
   end
 
   def self.validate_tcpflags(flags)
-    tcpflags = [:fin, :syn, :rst, :psh, :ack, :urg]
+    tcpflags = %i[fin syn rst psh ack urg]
     Array(flags).reject do |key|
       tcpflags.include?(key.to_sym)
     end.empty?

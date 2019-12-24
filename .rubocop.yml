@@ -1,52 +1,38 @@
-AlignParameters:
-  Enabled: false
-
-Encoding:
-  Enabled: false
-
-ClassLength:
-  Enabled: false
-
-MethodLength:
-  Enabled: false
-
-LineLength:
-  Enabled: false
-
-# HashSyntax:
-#  EnforcedStyle: hash_rockets
-
-Documentation:
-  Enabled: false
-
-PerceivedComplexity:
-  Enabled: false
-
-CyclomaticComplexity:
-  Enabled: false
-
-Style/FileName:
-  Enabled: false
-
-Metrics/AbcSize:
-  Enabled: false
-
-Metrics/BlockLength:
-  Exclude:
-    - "definitions/sequence.rb"
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-
-EndOfLine:
-  Enabled: false
-
 AllCops:
   Exclude:
     - 'Guardfile'
-    - 'Rakefile'
     - "db/**/*"
     - "tmp/**/*"
     - "vendor/**/*"
     - "bin/**/*"
     - "log/**/*"
+
+Style/Encoding:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'providers/profile.rb'
+    - 'definitions/sequence.rb'
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - 'test/**/*.rb'
+
+Metrics/MethodLength:
+  Enabled: false
+
+Naming/FileName:
+  Enabled: false
+
+Layout/EndOfLine:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false

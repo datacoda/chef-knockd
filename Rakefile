@@ -12,7 +12,7 @@ namespace :style do
   FoodCritic::Rake::LintTask.new(:chef) do |t|
     t.options = {
       fail_tags: ['any'],
-      tags: ['~FC015']
+      tags: ['~FC015', '~FC113']
     }
   end
 end
@@ -36,7 +36,7 @@ namespace :integration do
 end
 
 desc 'Run tests on Travis'
-task travis: ['style', 'spec']
+task travis: %w[style]
 
 # Default
-task default: ['style', 'spec', 'integration:vagrant']
+task default: %w[style spec integration:vagrant]
